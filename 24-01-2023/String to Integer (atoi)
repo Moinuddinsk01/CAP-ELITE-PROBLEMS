@@ -1,0 +1,24 @@
+class Solution {
+    public int myAtoi(String s) {
+        s = s.trim();
+        if(s.equals("")) return 0;
+        int i=0,base=0,n=s.length();
+        boolean sign = false;
+        if(s.charAt(i)=='+' || s.charAt(i)=='-'){
+            if(s.charAt(i)=='-'){
+                sign = true;
+            }
+            i++;
+        }
+        while(i<n && Character.isDigit(s.charAt(i))){
+            if(base > Integer.MAX_VALUE/10 || (base == Integer.MAX_VALUE / 10 && s.charAt(i) - '0' > 7)){
+                if(!sign) return Integer.MAX_VALUE;
+                else return Integer.MIN_VALUE;
+            }
+            base = 10 * base + (s.charAt(i) - '0');
+            i++;
+        }
+        if(sign) return base*-1;
+        else return base;
+    }
+}
