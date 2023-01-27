@@ -1,0 +1,44 @@
+class QueueNode{
+    TreeNode node;
+    int vertical;
+    int level;
+    public QueueNode(TreeNode node,int vertical,int level){
+        this.node = node;
+        this.vertical = vertical;
+        this.level = level;
+    }
+}
+class Solution {
+    public List<List<Integer>> verticalTraversal(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        Queue<QueueNode> que = new LinkedList<>();
+        TreeMap<Integer,TreeMap<Integer,PriorityQueue<Integer>>> map = new TreeMap<>();
+        if(root==null) return result;
+        que.add(new QueueNode(root,0,0));
+        while(!que.isEmpty()){
+            QueueNode ele = que.poll();
+            TreeNode node = ele.node;
+            int vertical = ele.vertical;
+            int level = ele.level;
+            if(!map.containsKey(vertical)) map.put(vertical,new TreeMap<>());
+            if(!map.get(vertical).containsKey(level)) map.get(vertical).put(level,new PriorityQueue<>());
+            map.get(vertical).get(level).add(node.val);
+            if(node.left!=null) que.add(new QueueNode(node.left,vertical-1,level+1));
+            if(node.right!=null) que.add(new QueueNode(node.right,vertical+1,level+1));
+        }
+        for (TreeMap<Integer,PriorityQueue<Integer>> x : map.values()){
+            List<Integer> temp = new ArrayList<>();
+            for(PriorityQueue<Integer> y : x.values()){
+                // Iterator<Integer> value = y.iterator();
+                // while(value.hasNext()){
+                //     temp.add(value.next());
+                // }
+                while(!y.isEmpty()){
+                    temp.add(y.poll());
+                }
+            }
+            result.add(temp);
+        }
+        return result;
+    }
+}
