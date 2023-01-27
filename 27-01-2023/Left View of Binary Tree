@@ -1,0 +1,26 @@
+class Tree
+{
+    //Function to return list containing elements of left view of binary tree.
+    ArrayList<Integer> leftView(Node root)
+    {
+      // Your code here
+        ArrayList<Integer> result = new ArrayList<>();
+        Queue<Node> que = new LinkedList<>();  
+        if(root==null) return result;
+        que.add(root);
+        while(!que.isEmpty()){
+            int size = que.size();
+            for(int i=0;i<size;i++){
+                Node head = que.remove();
+                if(i==0) result.add(head.data); 
+                if(head.left!=null){
+                    que.add(head.left);
+                }
+                if(head.right!=null){
+                    que.add(head.right);
+                }
+            }
+        }
+        return result;
+    }
+}
