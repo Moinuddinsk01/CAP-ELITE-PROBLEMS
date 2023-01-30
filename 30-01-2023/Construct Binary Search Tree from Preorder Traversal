@@ -1,0 +1,14 @@
+class Solution {
+    int max = Integer.MAX_VALUE;
+    public TreeNode bstFromPreorder(int[] preorder) {
+        return createBST(preorder,max,new int[]{0});
+    }
+    public static TreeNode createBST(int [] pre,int max,int [] curr){
+        if(curr[0]==pre.length || pre[curr[0]]>max) return null;
+        TreeNode node = new TreeNode(pre[curr[0]++]);
+        node.left = createBST(pre,node.val,curr);
+        node.right = createBST(pre,max,curr);
+        return node;
+
+    }
+}
