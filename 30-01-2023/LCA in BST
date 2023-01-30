@@ -12,3 +12,28 @@ class BST
     }
     
 }
+/*
+class BST
+{   
+    //Function to find the lowest common ancestor in a BST. 
+	Node LCA(Node root, int n1, int n2)
+	{
+        // code here.
+        Node curr = root;
+        while(true){
+            if(n1<curr.data && n2<curr.data){
+                curr = curr.left;
+            }
+            else if(n1>curr.data && n2>curr.data){
+                curr = curr.right;
+            }
+            else{
+                break;
+            }
+        }
+        return curr;
+        
+    }
+    
+}
+*/
