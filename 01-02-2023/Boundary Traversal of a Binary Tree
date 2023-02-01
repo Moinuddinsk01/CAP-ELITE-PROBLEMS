@@ -6,7 +6,6 @@ class Solution
 		if(!isLeaf(root)) result.add(root.data);
 		leftViewHelper(root,result);
 		addLeaves(root,result);
-		int size = result.size()-1;
 		rightViewHelper(root,result,size);
 		return result;
 	}
