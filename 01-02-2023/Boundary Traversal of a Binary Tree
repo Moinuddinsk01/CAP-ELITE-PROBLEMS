@@ -6,7 +6,7 @@ class Solution
 		if(!isLeaf(root)) result.add(root.data);
 		leftViewHelper(root,result);
 		addLeaves(root,result);
-		rightViewHelper(root,result,size);
+		rightViewHelper(root,result);
 		return result;
 	}
 	boolean isLeaf(Node root){
@@ -20,7 +20,7 @@ class Solution
             else cur = cur.right;
         }
     }
-	void rightViewHelper(Node root, ArrayList<Integer> result, int size){
+	void rightViewHelper(Node root, ArrayList<Integer> result){
         Node cur = root.right;
         ArrayList < Integer > tmp = new ArrayList < Integer > ();
         while (cur != null) {
