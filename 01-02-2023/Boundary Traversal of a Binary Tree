@@ -1,0 +1,45 @@
+class Solution
+{
+	ArrayList <Integer> boundary(Node root)
+	{
+	    ArrayList<Integer> result = new ArrayList<>();
+		if(!isLeaf(root)) result.add(root.data);
+		leftViewHelper(root,result);
+		addLeaves(root,result);
+		int size = result.size()-1;
+		rightViewHelper(root,result,size);
+		return result;
+	}
+	boolean isLeaf(Node root){
+		return root.left==null && root.right==null;
+	}
+	void leftViewHelper(Node root, ArrayList<Integer> result){
+        Node cur = root.left;
+        while (cur != null) {
+            if (!isLeaf(cur)) result.add(cur.data);
+            if (cur.left != null) cur = cur.left;
+            else cur = cur.right;
+        }
+    }
+	void rightViewHelper(Node root, ArrayList<Integer> result, int size){
+        Node cur = root.right;
+        ArrayList < Integer > tmp = new ArrayList < Integer > ();
+        while (cur != null) {
+            if (!isLeaf(cur)) tmp.add(cur.data);
+            if (cur.right != null) cur = cur.right;
+            else cur = cur.left;
+        }
+        int i;
+        for (i = tmp.size() - 1; i >= 0; --i) {
+            result.add(tmp.get(i));
+        }
+    }
+	void addLeaves(Node root, ArrayList < Integer > result) {
+	    if(root==null) return;
+		if (isLeaf(root)) {
+            result.add(root.data);
+        }
+        addLeaves(root.left, result);
+        addLeaves(root.right, result);
+    }
+}
