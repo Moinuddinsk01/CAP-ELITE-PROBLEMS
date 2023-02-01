@@ -1,0 +1,26 @@
+public class Solution {
+    ArrayList<Integer> lst = new ArrayList<>();
+    public int[] solve(TreeNode A, int B) {
+        helper(A,B);
+        int n = lst.size();
+        int arr[] = new int[n];
+        for(int i=0;i<n;i++){
+            arr[i] = lst.get(i);
+        }
+        return arr;
+    }
+    public boolean helper(TreeNode root, int b){
+        if(root==null){
+            return false;
+        }
+        lst.add(root.val);
+        if(root.val==b){
+            return true;
+        }
+        if(helper(root.left,b) || helper(root.right,b)){
+            return true;
+        }
+        lst.remove(lst.size()-1);
+        return false;
+    }
+}
