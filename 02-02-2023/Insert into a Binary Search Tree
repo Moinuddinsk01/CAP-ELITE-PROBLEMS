@@ -1,0 +1,34 @@
+class Solution {
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+        if(root==null) return new TreeNode(val);
+        if(val<root.val) root.left = insertIntoBST(root.left,val);
+        else root.right = insertIntoBST(root.right,val);
+        return root;
+    }
+}
+/*
+class Solution {
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+        TreeNode node = new TreeNode(val);
+        if(root==null) return node;
+        TreeNode curr = root;
+        while(true){
+            if(val<curr.val){
+                if(curr.left!=null) curr = curr.left;
+                else{
+                    curr.left = node;
+                    break;
+                }
+            }
+            else{
+                if(curr.right!=null) curr = curr.right;
+                else{
+                    curr.right = node;
+                    break;
+                }
+            }
+        }
+        return root;
+    }
+}
+*/
