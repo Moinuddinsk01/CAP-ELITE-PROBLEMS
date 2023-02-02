@@ -1,0 +1,52 @@
+class Solution {
+    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
+        List<Integer> arr = new ArrayList<>();
+        allElements(root1,arr);
+        allElements(root2,arr);
+        Collections.sort(arr);
+        return arr;
+    }
+    public void allElements(TreeNode root, List<Integer> arr){
+        if(root==null) return;
+        arr.add(root.val);
+        allElements(root.left,arr);
+        allElements(root.right,arr);
+    }
+}
+/*
+class Solution {
+    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
+        List<Integer> result = new ArrayList<>();
+        Stack<TreeNode> stack1 = new Stack<>();
+        Stack<TreeNode> stack2 = new Stack<>();
+        addLeft(root1,stack1);
+        addLeft(root2,stack2);
+        while(!stack1.empty() && !stack2.empty()){
+            TreeNode curr1 = stack1.peek();
+            TreeNode curr2 = stack2.peek();
+            if(curr1.val<=curr2.val){
+                result.add(curr1.val);
+                stack1.pop();
+                addLeft(curr1.right,stack1);
+            }
+            else{
+                result.add(curr2.val);
+                stack2.pop();
+                addLeft(curr2.right,stack2);
+            }
+        }
+        Stack<TreeNode> stack = stack1.isEmpty() ? stack2 : stack1;
+        while(!stack.empty()){
+            TreeNode curr1 = stack.pop();
+            result.add(curr1.val);
+            addLeft(curr1.right,stack);
+        }
+        return result;
+    }
+    public void addLeft(TreeNode root,Stack<TreeNode> stack){
+        if(root==null) return;
+        stack.push(root);
+        addLeft(root.left,stack);
+    }
+}
+*/
