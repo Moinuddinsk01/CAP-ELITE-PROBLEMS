@@ -1,0 +1,16 @@
+class Solution {
+    int above=Integer.MAX_VALUE,min_diff=Integer.MAX_VALUE;
+    public int minDiffInBST(TreeNode root) {
+        inorder(root);
+        return min_diff;
+    }
+    public void inorder(TreeNode root){
+        if(root==null) return;
+        inorder(root.left);
+        if(Math.abs(above-root.val)<min_diff){
+            min_diff = Math.abs(above-root.val);
+        }
+        above = root.val;
+        inorder(root.right);
+    }
+}
