@@ -1,0 +1,30 @@
+class Pair{
+    TreeNode node;
+    int offset;
+    public Pair(TreeNode node,int offset){
+        this.node = node;
+        this.offset= offset;
+    }
+}
+class Solution {
+    public int widthOfBinaryTree(TreeNode root) {
+        int max = Integer.MIN_VALUE;
+        Queue<Pair> que = new LinkedList<>();
+        que.add(new Pair(root,0));
+        int start=0,end=0;
+        while(!que.isEmpty()){
+            int n = que.size();
+            for(int i=0;i<n;i++){
+                Pair pair = que.poll();
+                TreeNode node = pair.node;
+                int offset = pair.offset;
+                if(i==0) start =  offset;
+                if(i==n-1) end = offset;
+                if(node.left!=null) que.add(new Pair(node.left,(offset)*2+1));
+                if(node.right!=null) que.add(new Pair(node.right,(offset)*2+2));
+            }
+            max = Math.max(max,end-start+1);
+        }
+        return max;
+    }
+}
