@@ -1,0 +1,51 @@
+class Solution {
+    // Function to return Breadth First Traversal of given graph.
+    public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        // Code here
+        ArrayList<Integer> bfs = new ArrayList<Integer>();
+        Queue<Integer> que = new LinkedList<>();
+        que.add(0);
+        boolean visited[] = new boolean[V];
+        visited[0] = true;
+        while(!que.isEmpty()){
+            int source = que.remove();
+            bfs.add(source);
+            for(Integer neigh : adj.get(source)){
+                if(!visited[neigh]){
+                    visited[neigh] = true;
+                    que.add(neigh);
+                }
+            }
+        }
+        return bfs;
+        
+    }
+}
+/*
+class Solution {
+    // Function to return Breadth First Traversal of given graph.
+    public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        // Code here
+        ArrayList<Integer> bfs = new ArrayList<Integer>();
+        Queue<Integer> que = new LinkedList<>();
+        que.add(0);
+        boolean visited[] = new boolean[V];
+        visited[0] = true;
+        while(!que.isEmpty()){
+            int n = que.size();
+            for(int i=0;i<n;i++){
+                int source = que.remove();
+                bfs.add(source);
+                for(Integer neigh : adj.get(source)){
+                    if(!visited[neigh]){
+                        visited[neigh] = true;
+                        que.add(neigh);
+                    }
+                }
+            }
+        }
+        return bfs;
+        
+    }
+}
+*/
