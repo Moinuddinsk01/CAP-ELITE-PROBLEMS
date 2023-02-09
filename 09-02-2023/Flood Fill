@@ -16,3 +16,37 @@ class Solution {
         }
     }
 }
+/* 
+class Solution {
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        int m = image.length;
+        int n = image[0].length;
+        int drow [] = new int[]{-1,0,1,0};
+        int dcol [] = new int[]{0,1,0,-1};
+        int initial = image[sr][sc];
+        Queue<Pair> que = new LinkedList<>();
+        que.add(new Pair(sr,sc));
+        image[sr][sc] = color;
+        while(!que.isEmpty()){
+            Pair pair = que.poll();
+            for(int i=0;i<4;i++){
+                int row = pair.row + drow[i];
+                int col = pair.col + dcol[i];
+                if(row>=0 && row<m && col>=0 && col<n && image[row][col]==initial && image[row][col]!=color){
+                    image[row][col] = color;
+                    que.add(new Pair(row,col));
+                }
+            }
+        }
+        return image;
+    }
+}
+class Pair{
+    int row;
+    int col;
+    Pair(int row, int col){
+        this.row = row;
+        this.col = col;
+    }
+}
+*/
